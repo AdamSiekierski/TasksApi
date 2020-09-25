@@ -1,12 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>0fe6f372-3dd1-4409-9a15-995b99e5c37b</UserSecretsId>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="MongoDB.Driver" Version="2.11.2" />
   </ItemGroup>
-
-
 </Project>
