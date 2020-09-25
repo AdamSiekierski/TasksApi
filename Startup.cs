@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using TasksApi.Models;
-using System;
+using TasksApi.Services;
 
 namespace TasksApi
 {
@@ -23,6 +23,8 @@ namespace TasksApi
     {
       services.Configure<TasksDatabaseSettings>(Configuration.GetSection("DB"));
       services.AddSingleton<ITasksDatabaseSettings>(sp => sp.GetRequiredService<IOptions<TasksDatabaseSettings>>().Value);
+
+      services.AddSingleton<TasksService>();
 
       services.AddControllers();
     }
