@@ -1,6 +1,7 @@
 using MongoDB.Driver;
 using TasksApi.Models;
 using System.Collections.Generic;
+using System;
 
 namespace TasksApi.Services
 {
@@ -13,9 +14,18 @@ namespace TasksApi.Services
       var client = new MongoClient(tasksDatabaseSettings.ConnectionString);
       var database = client.GetDatabase("TasksApi");
 
-      _tasks = database.GetCollection<Task>("tasks");
+      _tasks = database.GetCollection<Task>("Tasks");
     }
 
     public List<Task> Get() => _tasks.Find<Task>(task => true).ToList();
+
+    public Task Get(string id) => _tasks.Find<Task>(task => task.Id == id).FirstOrDefault();
+
+    public Task Create(Task task)
+    {
+      _tasks.InsertOne(task);
+
+      return task;
+    }
   }
 }

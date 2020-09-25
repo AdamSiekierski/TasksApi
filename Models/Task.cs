@@ -11,10 +11,8 @@ namespace TasksApi.Models
     public string Id { get; set; }
 
     [BsonElement("Name")]
-    public string TaskName { get; set; }
+    public string Name { get; set; }
 
     public string Description { get; set; }
-
-    public DateTime Date { get; set; }
   }
 }
