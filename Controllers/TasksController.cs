@@ -34,11 +34,41 @@ namespace TasksApi.Controllers
     }
 
     [HttpPost]
-    public ActionResult<Task> PostTodoItem(Task task)
+    public ActionResult<Task> Create(Task task)
     {
       _tasksService.Create(task);
 
       return CreatedAtRoute("GetTask", new { id = task.Id.ToString() }, task);
+    }
+
+    [HttpPut("{id:length(24)")]
+    public IActionResult Update(string id, Task taskIn)
+    {
+      var task = _tasksService.Get(id);
+
+      if (task == null)
+      {
+        return NotFound();
+      }
+
+      _tasksService.Update(id, taskIn);
+
+      return NoContent();
+    }
+
+    [HttpDelete("{id:length(24)")]
+    public IActionResult Delete(string id)
+    {
+      var task = _tasksService.Get(id);
+
+      if (task == null)
+      {
+        return NotFound();
+      }
+
+      _tasksService.Delete(id);
+
+      return NoContent();
     }
   }
 }

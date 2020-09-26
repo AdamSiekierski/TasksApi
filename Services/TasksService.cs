@@ -27,5 +27,9 @@ namespace TasksApi.Services
 
       return task;
     }
+
+    public void Update(string id, Task taskIn) => _tasks.ReplaceOne(task => task.Id == id, taskIn);
+
+    public void Delete(string id) => _tasks.DeleteOne(task => task.Id == id);
   }
 }
